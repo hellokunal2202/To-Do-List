@@ -27,7 +27,7 @@ class FileHelper {
         var fis : FileInputStream=context.openFileInput(FILENAME)
         var ois = ObjectInputStream(fis)
         itemList= ois.readObject() as ArrayList<String>
-        
+
         return itemList
     }
 
