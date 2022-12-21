@@ -2,6 +2,7 @@ package com.example.todolist
 
 import android.content.Context
 import java.io.FileInputStream
+import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.ObjectInput
 import java.io.ObjectInputStream
@@ -23,13 +24,22 @@ class FileHelper {
 
     fun readData(context: Context):ArrayList<String>
     {
+
         var itemList:ArrayList<String>
-        var fis : FileInputStream=context.openFileInput(FILENAME)
-        var ois = ObjectInputStream(fis)
-        itemList= ois.readObject() as ArrayList<String>
+
+        try {
+            var fis : FileInputStream=context.openFileInput(FILENAME)
+            var ois = ObjectInputStream(fis)
+            itemList= ois.readObject() as ArrayList<String>
+        }catch (e:FileNotFoundException)
+        {
+            itemList=ArrayList()
+        }
+
 
         return itemList
     }
+
 
 
 
